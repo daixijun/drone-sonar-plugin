@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/codegangsta/cli"
 	"os"
+
+	sonar "github.com/daixijun/drone-sonar-plugin"
+	"github.com/urfave/cli"
 )
 
 var build = "1" // build number set at compile time
@@ -83,20 +85,19 @@ func main() {
 }
 
 func run(c *cli.Context) {
-	plugin := Plugin{
-		Config: Config{
-			Key:   c.String("key"),
-			Name:  c.String("name"),
-			Host:  c.String("host"),
-			Token: c.String("token"),
-
+	plugin := sonar.Plugin{
+		Config: sonar.Config{
+			Key:           c.String("key"),
+			Name:          c.String("name"),
+			Host:          c.String("host"),
+			Token:         c.String("token"),
 			Version:       c.String("ver"),
 			Timeout:       c.String("timeout"),
 			Sources:       c.String("sources"),
 			Inclusions:    c.String("inclusions"),
 			Exclusions:    c.String("exclusions"),
 			Level:         c.String("level"),
-			showProfiling: c.String("showProfiling"),
+			ShowProfiling: c.String("showProfiling"),
 		},
 	}
 

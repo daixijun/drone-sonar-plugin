@@ -1,25 +1,24 @@
-package main
+package sonar
 
 import (
-	"strings"
 	"fmt"
 	"os/exec"
+	"strings"
 )
 
 type (
 	Config struct {
-		Key   			string
-		Name    		string
-		Host  			string
-		Token 			string
-
-		Version    		string
-		Sources    		string
-		Timeout   		string
-		Inclusions    	string
-		Exclusions  	string
-		Level 			string
-		showProfiling 	string
+		Key           string
+		Name          string
+		Host          string
+		Token         string
+		Version       string
+		Sources       string
+		Timeout       string
+		Inclusions    string
+		Exclusions    string
+		Level         string
+		ShowProfiling string
 	}
 	Plugin struct {
 		Config Config
@@ -32,16 +31,14 @@ func (p Plugin) Exec() error {
 		"-Dsonar.projectName=" + p.Config.Name,
 		"-Dsonar.host.url=" + p.Config.Host,
 		"-Dsonar.login=" + p.Config.Token,
-
 		"-Dsonar.projectVersion=" + p.Config.Version,
 		"-Dsonar.sources=" + p.Config.Sources,
 		"-Dsonar.ws.timeout=" + p.Config.Timeout,
 		"-Dsonar.inclusions=" + p.Config.Inclusions,
 		"-Dsonar.exclusions=" + p.Config.Exclusions,
 		"-Dsonar.log.level=" + p.Config.Level,
-		"-Dsonar.showProfiling=" + p.Config.showProfiling,
+		"-Dsonar.showProfiling=" + p.Config.ShowProfiling,
 		"-Dsonar.scm.provider=git",
-		
 	}
 	cmd := exec.Command("sonar-scanner", args...)
 	// fmt.Printf("==> Executing: %s\n", strings.Join(cmd.Args, " "))
