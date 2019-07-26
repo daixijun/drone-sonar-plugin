@@ -40,11 +40,14 @@ func (p Plugin) Exec() error {
 		"-Dsonar.showProfiling=" + p.Config.ShowProfiling,
 		"-Dsonar.scm.provider=git",
 	}
+	if p.Config.Level == "DEBUG" {
+		args = append(args, "-X")
+	}
 	cmd := exec.Command("sonar-scanner", args...)
 	// fmt.Printf("==> Executing: %s\n", strings.Join(cmd.Args, " "))
 	output, err := cmd.CombinedOutput()
 	if len(output) > 0 {
-		fmt.Printf("==> Code Analysis Result: %s\n", string(output))
+		fmt.Printf("==> Code Analysis Result:\n%s\n", string(output))
 	}
 	if err != nil {
 		return err

@@ -1,0 +1,14 @@
+---
+kind: pipeline
+name: default
+
+steps:
+  - name: build-docker-image
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      repo: daixijun1990/drone-sonar
+      auto_tag: true
