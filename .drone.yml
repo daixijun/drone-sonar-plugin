@@ -3,6 +3,10 @@ kind: pipeline
 name: default
 
 steps:
+  - name: vet
+    image: golang:1.12-alpine
+    commands:
+      - go vet ./...
   - name: build-docker-image
     image: plugins/docker
     settings:
