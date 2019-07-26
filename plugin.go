@@ -40,7 +40,6 @@ func (p Plugin) Exec() error {
 		"-Dsonar.log.level=" + p.Config.Level,
 		"-Dsonar.showProfiling=" + p.Config.ShowProfiling,
 		"-Dsonar.scm.provider=git",
-		"-Dsonar.analysis.mode=preview",
 		"-Dsonar.gitlab.project_id=" + os.Getenv("DRONE_REPO"),
 		"-Dsonar.gitlab.commit_sha=" + os.Getenv("DRONE_COMMIT_SHA"),
 		"-Dsonar.gitlab.ref_name=" + os.Getenv("DRONE_REPO_BRANCH"),
