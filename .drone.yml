@@ -6,7 +6,7 @@ steps:
   - name: vet
     image: golang:1.12-alpine
     commands:
-      - go vet ./...
+      - go vet -mod=vendor ./...
   - name: build-docker-image
     image: plugins/docker
     settings:
