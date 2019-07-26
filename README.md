@@ -17,9 +17,12 @@ build docker image
 ```commandline
 docker run --rm \
   -e DRONE_REPO=test \
+  -e DRONE_BUILD_NUMBER=1.0 \
   -e PLUGIN_SOURCES=. \
-  -e SONAR_HOST=http://localhost:9000 \
-  -e SONAR_TOKEN=60878847cea1a31d817f0deee3daa7868c431433 \
+  -e PLUGIN_SONAR_HOST=http://localhost:9000 \
+  -e PLUGIN_SONAR_TOKEN=60878847cea1a31d817f0deee3daa7868c431433 \
+  -e PLUGIN_LEVEL=DEBUG \
+  -e PLUGIN_SHOWPROFILING=true \
   daixijun1990/drone-sonar
 ```
 
